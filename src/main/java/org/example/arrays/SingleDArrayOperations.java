@@ -6,16 +6,29 @@ import java.util.Random;
 public class SingleDArrayOperations {
     public static void main(String[] args) {
         int[] randomArray = getRandomArray(10, 20);
+
+
         int[] randomArray2 = getRandomArray(20, 40);
 
+//        System.out.println(Arrays.toString(randomArray));
+//        System.out.println(replaceValue(randomArray, 1, 2));
+//        System.out.println(Arrays.toString(randomArray));
+//        int[] updatedArray = Arrays.stream(randomArray).map(e -> e + 1).toArray();
+//
+//
         System.out.println(Arrays.toString(randomArray));
-        System.out.println(replaceValue(randomArray, 1, 2));
-        System.out.println(Arrays.toString(randomArray));
-        int[] updatedArray = Arrays.stream(randomArray).map(e -> e + 1).toArray();
-
-        System.out.println(Arrays.toString(updatedArray));
+        System.out.println(Arrays.toString(getMiddleArray(randomArray)));
     }
+    public static int[] getMiddleArray(int[] myArray){
+        if(myArray.length<3)return myArray;
 
+        int[] middleArray=new int[myArray.length-2];
+
+        for(int counter=0;counter<myArray.length-2;counter++){
+            middleArray[counter]=myArray[1+counter];
+        }
+        return middleArray;
+    }
 
     private static boolean replaceValue(int[] inputArray, int baseValue, int newValue) {
         if (inputArray == null) return false;

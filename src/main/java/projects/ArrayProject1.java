@@ -99,6 +99,8 @@ public class ArrayProject1 {
 
             System.out.println("NUmber of days more then average : " + numberOfDaysMoreThenAverage);
         }
+        int[] myArray=new int[]{1,2,3,4,5,6};
+
     }
 
 
