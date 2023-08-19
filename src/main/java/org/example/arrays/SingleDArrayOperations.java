@@ -2,11 +2,11 @@ package org.example.arrays;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Stack;
 
 public class SingleDArrayOperations {
     public static void main(String[] args) {
         int[] randomArray = getRandomArray(10, 20);
-
 
         int[] randomArray2 = getRandomArray(20, 40);
 
@@ -18,14 +18,40 @@ public class SingleDArrayOperations {
 //
         System.out.println(Arrays.toString(randomArray));
         System.out.println(Arrays.toString(getMiddleArray(randomArray)));
+        System.out.println(binarySearch(randomArray, randomArray[(int) new Random().nextInt(randomArray.length)]));
     }
-    public static int[] getMiddleArray(int[] myArray){
-        if(myArray.length<3)return myArray;
 
-        int[] middleArray=new int[myArray.length-2];
 
-        for(int counter=0;counter<myArray.length-2;counter++){
-            middleArray[counter]=myArray[1+counter];
+    public static int binarySearch(int[] unsortedArray, int searchElement) {
+        Arrays.sort(unsortedArray);
+
+        int right = unsortedArray.length;
+        int left = 1;
+
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+
+            if (searchElement < unsortedArray[mid]) {
+
+                right = mid;
+            } else if (searchElement > unsortedArray[mid]) {
+                left = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int[] getMiddleArray(int[] myArray) {
+        if (myArray.length < 3) return myArray;
+
+        int[] middleArray = new int[myArray.length - 2];
+
+        for (int counter = 0; counter < myArray.length - 2; counter++) {
+            middleArray[counter] = myArray[1 + counter];
         }
         return middleArray;
     }
@@ -57,6 +83,9 @@ public class SingleDArrayOperations {
 
     private static int[] getRandomArray(int arraySize, int upperBound) {
         try {
+            Stack<String> stringStack=new Stack<>();
+            StringBuilder stringBuild=new StringBuilder();
+
             if (arraySize < 0) throw new RuntimeException();
 
             int[] intArray = new int[arraySize];
@@ -70,6 +99,8 @@ public class SingleDArrayOperations {
             System.out.println(e.getMessage());
             return null;
         }
+
     }
+
 
 }

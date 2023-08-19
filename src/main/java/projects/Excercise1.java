@@ -7,7 +7,7 @@ public class Excercise1 {
 
     public static void main(String[] args) {
 
-        int[] myArray = {100, 20, 203, 405, 5030, 201, 10};
+        int[] myArray = {1,2,3,4};
 
 //        System.out.println(Arrays.toString(findTopTwoScores(myArray)));
 //        System.out.println(maxProduct(myArray));
@@ -16,7 +16,68 @@ public class Excercise1 {
 //        System.out.println(reverseWords("a good   example"));
 
 //        System.out.println(findDuplicates(myArray));
-        System.out.println(Arrays.toString(reverseArray(myArray)));
+//        System.out.println(Arrays.toString(reverseArray(myArray)));
+//        System.out.println(Arrays.toString(twoSum2(new int[]{3,1,2,3,4, 3}, 6)));
+
+//        System.out.println(Arrays.toString(productExceptSelf(new int[]{1,2,3,4})));
+
+        System.out.println(myPow(10,5));
+    }
+
+
+    public static double myPow(double x, int n) {
+        if(n==1)return 1;
+        else{
+            n=n-1;
+            x=x*myPow(x,n);
+            return x;
+        }
+    }
+    public static int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> numMap = new HashMap<>();
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            int complement = target - nums[i];
+            if (numMap.containsKey(complement)) {
+                return new int[]{numMap.get(complement), i};
+            }
+            numMap.put(nums[i], i);
+        }
+
+        return new int[]{}; // No solution found
+    }
+
+
+    public static int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] ans = new int[n];
+
+        Arrays.fill(ans, 1);
+
+        int curr = 1;
+
+        for (int i = 0; i < n; i++) {
+            ans[i] *= curr;
+            curr *= nums[i];
+        }
+        curr = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            ans[i] *= curr;
+            curr *= nums[i];
+        }
+        return ans;
+    }
+
+    public static void binaryToDec(String binaryString) {
+
+        double value = 0;
+
+        for (int i = 0; i < binaryString.length(); i++) {
+            value = (2 * value) + Integer.parseInt(String.valueOf(binaryString.charAt(i)));
+        }
+
+        System.out.println(value);
     }
 
     public static int sumDiagonalElements(int[][] array) {
@@ -356,11 +417,10 @@ public class Excercise1 {
             reverseCounter--;
         }
 
-        LinkedList<String> linkedList=new LinkedList<>();
+        LinkedList<String> linkedList = new LinkedList<>();
 //        linkedList.add();
         return inputArray;
     }
-
 
 
 }

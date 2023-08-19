@@ -1,72 +1,95 @@
 package list;
 
-import java.sql.SQLOutput;
-
 public class SinglyLinkedList {
 
-    public Node head;
-    public Node tail;
-    public int size;
 
-    public Node createSingleLinkedList(int nodeValue) {
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public void createLinkedList(int value) {
         Node node = new Node();
-        node.value = nodeValue;
-        node.next = null;
+        node.setValue(value);
+        node.setNext(null);
         head = node;
         tail = node;
         size = 1;
-        return node;
     }
 
-
-    public void insertNode(int nodeValue, int location) {
+    public void insertNode(int value, int location) {
         Node newNode = new Node();
-
-        newNode.value = nodeValue;
+        newNode.setValue(value);
 
         if (head == null) {
-            createSingleLinkedList(nodeValue);
+            System.out.println("Null head Found creating new single-Linked List");
+            createLinkedList(value);
             return;
         } else if (location == 0) {
-            newNode.next = head;
-            head = newNode;
+            newNode.setNext(tail);
+            this.head.setNext(newNode);
         } else if (location >= size) {
-            newNode.next = null;
-            tail.next = newNode;
-            tail = newNode;
+            newNode.setNext(null);
+            this.tail.setNext(newNode);
+            this.tail = newNode;
 
         } else {
-
-
             Node tempNode = head;
-            int index = 0;
-            while (index < location - 1) {
-                tempNode = tempNode.next;
-                index++;
-            }
 
-            Node nextNode = tempNode.next;
-            tempNode.next = newNode;
-            newNode.next = nextNode;
-
-        }
-        size++;
-    }
-
-    //Single linked list traversal
-
-    public void traverseLinkedList() {
-        if (head == null) {
-            System.out.println("Empty Linked List");
-        } else {
-            Node tempNode = head;
             int counter = 0;
-            while (counter < size - 1) {
-                System.out.println(tempNode.value);
-                tempNode = tempNode.next;
+            while (counter < location - 1) {
+                tempNode = tempNode.getNext();
                 counter++;
             }
+
+            Node nextNode = tempNode.getNext();
+            tempNode.setNext(newNode);
+            newNode.setNext(nextNode);
+        }
+        size++;
+        System.out.println("Inserted/Updated -> " + value + " at location -> " + location + " updated size -> " + size);
+    }
+
+    public void insertNodeAtEnd(int value) {
+        insertNode(value, Integer.MAX_VALUE);
+    }
+
+
+    public void traverseAndPrintList() {
+        System.out.println("Starting traversing ....");
+
+        System.out.println(" ");
+        Node tempNode = head;
+        for (int i = 0; i < size; i++) {
+            if (i == size - 1) {
+                System.out.println(tail.getValue());
+                break;
+            }
+            System.out.print(tempNode.getValue() + " |  ");
+            tempNode = tempNode.getNext();
         }
 
+        System.out.println(" ");
+    }
+
+
+    public void deleteNode(int value) {
+
+        Node tempNode = this.head;
+        if (head.getValue() == value) {
+            head = head.getNext();
+        }
+        Node previousNode = null;
+        for (int i = 1; i < size - 1; i++) {
+
+            if (tempNode.getValue() == value) {
+                previousNode.setNext(tempNode.getNext());
+                break;
+            }
+            previousNode = tempNode;
+            tempNode = tempNode.getNext();
+        }
+
+        System.out.println("Updated List :: ");
+        traverseAndPrintList();
     }
 }
