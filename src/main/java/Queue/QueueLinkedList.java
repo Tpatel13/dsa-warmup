@@ -28,13 +28,14 @@ public class QueueLinkedList {
     }
 
     public int deQueue() {
+
         if (this.beginning == null) {
             System.out.println("Queue is empty");
             return -1;
         }
+
         int returnValue = this.beginning.value;
         this.beginning = this.beginning.next;
-
         return returnValue;
     }
 }

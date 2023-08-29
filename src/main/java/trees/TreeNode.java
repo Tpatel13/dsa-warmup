@@ -10,22 +10,20 @@ public class TreeNode {
 
     public TreeNode(String data) {
         this.data = data;
-        this.children = new ArrayList<TreeNode>();
+        this.children = new ArrayList<>();
     }
 
     public void addChild(TreeNode node) {
         this.children.add(node);
-
-
     }
 
     public String print(int level) {
-        String ret;
-        ret = " ".repeat(level) + data + "\n";
+        StringBuilder ret;
+        ret = new StringBuilder(" ".repeat(level) + data + "\n");
 
         for (TreeNode child : this.children) {
-            ret = ret + child.print(1 + level);
+            ret.append(child.print(1 + level));
         }
-        return ret;
+        return ret.toString();
     }
 }

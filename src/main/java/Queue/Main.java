@@ -1,7 +1,7 @@
 package Queue;
 
+import java.util.*;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,16 +16,30 @@ public class Main {
 //        System.out.println(circularQueue.isEmpty());
 //        System.out.println(circularQueue.isFull());
 
-        QueueLinkedList linkedList = new QueueLinkedList();
+//        QueueLinkedList linkedList = new QueueLinkedList();
+//
+//        linkedList.enQueue(1);
+//        linkedList.enQueue(2);
+//        linkedList.enQueue(3);
+//
+//        System.out.println(linkedList.deQueue());
+//        System.out.println(linkedList.deQueue());
+//        System.out.println(linkedList.deQueue());
+//        System.out.println(linkedList.deQueue());
+//        Queue<String> queue = new LinkedList<>();
+//
+//
+//        Deque<Integer> integersQueue = new ArrayDeque<>();
 
-        linkedList.enQueue(1);
-        linkedList.enQueue(2);
-        linkedList.enQueue(3);
+        Map<Integer, Integer> map = new HashMap<>();
 
-        System.out.println(linkedList.deQueue());
-        System.out.println(linkedList.deQueue());
-        System.out.println(linkedList.deQueue());
-        System.out.println(linkedList.deQueue());
-        Queue<String> queue = new LinkedList<>();
+        map.put(1, 1);
+
+        System.out.println(map.get(1));
+
+        System.out.println(map.getOrDefault(1, 10));
+        System.out.println(map.get(1));
+
+        HashMap<String,String> stringStirngHashMap=new HashMap<String, String>();
     }
 }
